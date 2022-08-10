@@ -1,0 +1,87 @@
+<h1>Demo of Map() , forEach() , filter() , find() method :</h1>
+<h1>Enter any two numbers here</h1>
+
+<input type="text" id="num-1">
+<br>
+<br>
+
+<input type="text" id="num-2">
+
+<br>
+<br>
+
+
+<input type="button" value="submit" onClick="demo()">
+
+<h1 id="map-method-ans"></h1>
+<h1 id="foreach-ans"></h1>
+<h1 id="filter-ans"></h1>
+<h1 id="find-ans"></h1>
+<h1 id="sum-with-reduce"></h1>
+<h1 id="some-demo"></h1>
+<h1 id="every-demo"></h1>
+
+<script>
+
+function demo(){
+
+    let num1 = Number(document.getElementById("num-1").value);
+    let num2 = Number(document.getElementById("num-2").value);
+    console.log(num1+num2);
+
+    let numbers = [num1,num2];
+
+    let DoubledNumbers =numbers.map((num)=>{
+        return num * 2;
+    })
+
+    let total = 0;
+
+    numbers.forEach((num)=>{
+        total+=num;
+    })
+
+    document.getElementById("map-method-ans").innerHTML = "Doubled Numbers:"+DoubledNumbers+"(using map method)";
+    document.getElementById("foreach-ans").innerHTML = "Sum of two numbers :"+total+"(using foreach method)";
+
+    let Greaterthan5 = numbers.filter(checkGreaterThan5);
+
+    function checkGreaterThan5(num){
+        return num>5;
+    }
+
+    console.log(Greaterthan5);
+
+    document.getElementById("filter-ans").innerHTML = "Number(s) greater than 5:"+Greaterthan5+"(using filter)";
+
+    let greaterThan3 = numbers.find(element => element > 3);
+
+    document.getElementById("find-ans").innerHTML = "First number which is greater than 3 is "+greaterThan3+"(using find method)";
+
+    let initialValue = 0;
+    let sumWithInitial = numbers.reduce(
+  (previousValue, currentValue) => previousValue + currentValue,
+  initialValue
+);
+
+document.getElementById("sum-with-reduce").innerHTML = "Sum:"+sumWithInitial+"(using reduce method)";
+
+
+function isOdd(num){
+    return num%2==1;
+}
+
+function isEven(num){
+    return num%2==0;
+}
+
+let isAllOdd = numbers.every(isOdd);
+let isAnyEven = numbers.some(isEven);
+
+document.getElementById("some-demo").innerHTML = "Is ANY number even? :"+isAnyEven+"(using some() method)";
+document.getElementById("every-demo").innerHTML = "Is EVERY number odd? :"+isAllOdd+"(using every() method)";
+
+}
+
+
+</script>
